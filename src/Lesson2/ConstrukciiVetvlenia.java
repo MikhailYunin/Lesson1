@@ -10,15 +10,7 @@ public class ConstrukciiVetvlenia {
         in.useLocale(Locale.US);// воспринимает точку
         System.out.println("Введите код");
         int code = in.nextInt();
-
-        if (code == 123 ) {
-            System.out.println("Вы вошли как администратор");
-        } else if (code == 345) {
-            System.out.println("Вы вошли как пользователь");
-        }
-        else {
-            System.out.println("Вы не вошли");
-        }
+//новый код
         int a=5;
         int b=7;
         if (b==5){
@@ -28,6 +20,16 @@ public class ConstrukciiVetvlenia {
             }
         } else if (b==7)
             System.out.println("Совпадение b=7");
+        ///ghbkjsdkjsdkjdkjs
+        if (code == 123 ) {
+            System.out.println("Вы вошли как администратор");
+        } else if (code == 345) {
+            System.out.println("Вы вошли как пользователь");
+        }
+        else {
+            System.out.println("Вы не вошли");
+        }
+
 
         Scanner in2 = new Scanner(System.in);
         System.out.println("Введите код");
