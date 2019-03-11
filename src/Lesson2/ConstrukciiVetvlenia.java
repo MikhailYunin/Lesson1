@@ -11,7 +11,7 @@ public class ConstrukciiVetvlenia {
         System.out.println("Введите код");
         int code = in.nextInt();
 
-        if (code == 123 $$ code == 127) {
+        if (code == 123 ) {
             System.out.println("Вы вошли как администратор");
         } else if (code == 345) {
             System.out.println("Вы вошли как пользователь");
@@ -21,7 +21,7 @@ public class ConstrukciiVetvlenia {
         }
         int a=5;
         int b=7;
-        if (s==5){
+        if (b==5){
             System.out.println("Совпадение А=5");
             if (b==7) {
                 System.out.println("Совпадение b=7");
