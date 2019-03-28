@@ -12,7 +12,7 @@ public class Main {
         list.add(45);
         list.add(6);
 
-        for (Object o )
+     //   for (Object o )
 
     }
 }
