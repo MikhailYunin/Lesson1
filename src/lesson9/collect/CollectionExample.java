@@ -59,6 +59,9 @@ public class CollectionExample {
 
         User user1 = new User("US1",23 );
         User user2 = new User("US2",23 );
+
+
+
         TreeSet<User> users = new TreeSet<>(new UserComparator()); // второй вариант сравнения из собственного метода
         users.add(user1);
         users.add(user2);
@@ -99,7 +102,9 @@ public class CollectionExample {
 
             }
         }
-        //for (String word) не дописал
+        for (String word: words) {
+            System.out.println(word);
+        }
 
     }
 }

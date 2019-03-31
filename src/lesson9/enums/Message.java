@@ -29,17 +29,11 @@ public class Message {
         return code;
     }
 
-    public void setCode(int code) {
-        this.code = code;
-    }
-
     public MessagePriority getPriority() {
         return priority;
     }
 
-    public void setPriority(MessagePriority priority) {
-        this.priority = priority;
-    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -55,11 +49,19 @@ public class Message {
         return Objects.hash(getCode(), getPriority());
     }
 
-    public static void main(String[] args) {
-        System.out.println(MessagePriority.HIGH);
-
-
+    @Override
+    public String toString() {
+        return "Message{" +
+                "code=" + code +
+                ", priority=" + priority +
+                '}';
     }
+
+    public static void main(String[] args) {
+        List<Message> messages = MessageGenerator.generate(34);
+        System.out.println(messages.toString());
+    }
+
 }
 
 class MessageGenerator {
@@ -75,10 +77,10 @@ class MessageGenerator {
         int  typesCount = MessagePriority.values().length;
         for (int i = 0; i<num; i++){
             messages.add(
-                   new Message(
-                           random.nextInt(10),
-                           MessagePriority.getPriority(random.nextInt(typesCount)))
-                   );
+                    new Message(
+                            random.nextInt(10),
+                            MessagePriority.getPriority(random.nextInt(typesCount)))
+            );
         }
         return messages;
     }
