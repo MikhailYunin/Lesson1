@@ -93,13 +93,16 @@ public class MapExample {
 //            }
 //        }
 
-        Iterator<Map.Entry<String,Integer>> iterator = map.entrySet().iterator();
-
-
-//        ----Дописать
-//        while (iterator.hasNext()) {
-//            Map.Entry<String, Integer>
-//        }
+        Iterator<Map.Entry<String, Integer>> iterator = map.entrySet().iterator();
+        // удаление во время итерации
+        while (iterator.hasNext()){
+            Map.Entry<String, Integer> entry = iterator.next();
+            String key = entry.getKey();
+            int val = entry.getValue();
+            if (val < 20) {
+                iterator.remove();
+            }
+        }
 
 
 
