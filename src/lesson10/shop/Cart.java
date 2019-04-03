@@ -14,7 +14,7 @@ public class Cart {
     }
 
     public double getSumm(){
-        double summ;
+        double summ=0;
 
         for (Good good: goods){
             summ = + good.getPrice();
