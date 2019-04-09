@@ -14,6 +14,7 @@ public class AnnotationExample {
                 "name='" + name + '\'' +
                 '}';
     }
+
     @Deprecated
     @MethodInfo(date = "12.04.2019", author = "user")
     public void someVoid(){
@@ -27,10 +28,16 @@ public class AnnotationExample {
         for (Method method: methods){
             Annotation[] annotations = method.getDeclaredAnnotations();
             System.out.println(Arrays.toString(annotations));
+
+            method.isAnnotationPresent(MethodInfo.class);
+
+            MethodInfo methodInfo = method.getDeclaredAnnotation(MethodInfo.class);
+            System.out.println(methodInfo);
+            if (methodInfo != null){
+                System.out.println(methodInfo.version());
+                System.out.println(methodInfo.date());
+                System.out.println(methodInfo.author());
+            }
         }
-
-        @FieldInfo(date = "12.04.2019", author = "user")
-        
-
     }
 }

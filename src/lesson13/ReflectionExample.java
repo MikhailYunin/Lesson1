@@ -68,6 +68,12 @@ public class ReflectionExample {
         boolean isPrivate = Modifier.isPrivate(field.getModifiers());
         boolean isFinal = Modifier.isFinal(field.getModifiers());
 
+
+        someClass.toString(someClass1);
+
+
+
+
     }
 
 }
@@ -123,8 +129,19 @@ class SomeClass extends ParrentClass {
                 '}';
     }
 
-//    public static String toString(SomeClass obj) {
-//
-//
-//    }
+    public static void toString(SomeClass someClass) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Class<SomeClass> someCls = SomeClass.class;
+        Method method = someCls.getDeclaredMethod("getName");
+        method.setAccessible(true);
+        String name = (String) method.invoke(someClass);
+        Method method2 = someCls.getDeclaredMethod("getVersion");
+        method.setAccessible(true);
+        int version = (int) method2.invoke(someClass);
+        System.out.println("вызов toString из static: SomeClass{" +
+                "name='" + name + '\'' +
+                ", version=" + version +
+                '}');
+
+    }
+
 }

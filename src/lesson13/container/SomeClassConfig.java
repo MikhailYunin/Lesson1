@@ -1,6 +1,6 @@
 package lesson13.container;
 
-@Config
+@Config(prefix = "some")
 public class SomeClassConfig {
     String name;
     int version;
@@ -26,4 +26,9 @@ public class SomeClassConfig {
         config.setName("name");
         config.setVersion(2);
     }
+}
+
+@Config(prefix = "other")
+class OtherConfig{
+    private String name;
 }
