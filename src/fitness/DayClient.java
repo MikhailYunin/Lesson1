@@ -1,12 +1,20 @@
 package fitness;
 
 
-@AccessMode(gym = "16", group = "16", pool = "16")
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
+@AccessMode(gym = "16", group = "16", pool = "0")
 public class DayClient extends Client{
 
     private String endOfReg;
     private Access group = new Access(8, 16, FitnessServiceEnumiration.GROUP);
     private Access gym = new Access(8, 16, FitnessServiceEnumiration.GYM);
+
+    LocalDate date = LocalDate.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
 
 
@@ -30,12 +38,17 @@ public class DayClient extends Client{
 
     public DayClient(String name, String surname, int bYear) {
         super(name, surname, bYear);
-        this.endOfReg = "12.04.2020"; //TODO: сделать автоматически
+        this.endOfReg = date.plusYears(1).format(formatter) ; //TODO: сделать автоматически
+        setTypeClient("DayClient");
     }
 
-    public DayClient(String name, String surname, int bYear, String regDate, String endOfReg) {
+    public DayClient(String name, String surname, int bYear, String regDate, int endOfReg) {
         super(name, surname, bYear, regDate);
-        this.endOfReg = "12.08.2019"; // TODO
+        LocalDateTime date2 = (LocalDateTime) formatter.parse(regDate);
+        this.endOfReg = date2.plusMonths(endOfReg).format(formatter); // TODO
+        setTypeClient("DayClient");
+
 
     }
 }
+

@@ -1,5 +1,6 @@
 package fitness;
 
+@AccessMode
 public class FullDayClient extends Human{
     private Access group = new Access(8, 22, FitnessServiceEnumiration.GROUP);
     private Access gym = new Access(8, 22, FitnessServiceEnumiration.GYM);
@@ -7,6 +8,7 @@ public class FullDayClient extends Human{
 
     public FullDayClient(String name, String surname, int bYear) {
         super(name, surname, bYear);
+        setTypeClient("FullDayClient");
     }
 
     public FullDayClient(String name, String surname, int bYear, String regDate, Access group, Access gym, Access pool) {
@@ -14,5 +16,6 @@ public class FullDayClient extends Human{
         this.group = group;
         this.gym = gym;
         this.pool = pool;
+        setTypeClient("FullDayClient");
     }
 }

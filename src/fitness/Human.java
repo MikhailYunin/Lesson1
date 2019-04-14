@@ -5,6 +5,15 @@ public class Human {
     private String surname;
     private int bYear;
     private String regDate;
+    private String typeClient;
+
+    public String getTypeClient() {
+        return typeClient;
+    }
+
+    public void setTypeClient(String typeClient) {
+        this.typeClient = typeClient;
+    }
 
     public Human(String name, String surname, int bYear, String regDate) {
         this.name = name;
@@ -51,4 +60,6 @@ public class Human {
     public void setRegDate(String regDate) {
         this.regDate = regDate;
     }
+
+
 }
