@@ -7,7 +7,7 @@ import java.io.OutputStream;
 public class CryptoOutputstream {
     private byte[] key;
     private int currentKeyPosition;
-
+/*
     public CryptoOutputStream(OutputStream out, byte[] key) {
         super(out);
         this.key = key;
@@ -24,5 +24,5 @@ public class CryptoOutputstream {
     public void write(byte[] b, int off, int len) throws IOException {
         // шифрование
         super.write(b, off, len);
-    }
+    }*/
 }

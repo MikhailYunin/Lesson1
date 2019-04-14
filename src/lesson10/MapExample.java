@@ -49,7 +49,7 @@ public class MapExample {
         treeMap.put(1, "1");
         treeMap.put(6, "6");
         treeMap.put(2, "2");
-        System.out.println(treeMap);
+        System.out.println(treeMap.toString());
 
 
         WeakHashMap<Object,String> weakHashMap = new WeakHashMap<>();
@@ -84,7 +84,9 @@ public class MapExample {
         map.put("qdf",12);
         map.put("khg",67);
         map.put("pin",33);
-        map.put("ppp",21);
+        map.put("ppp",23);
+
+        System.out.println(map.toString());
 
 //       так нельзя
 //        for (Map.Entry<String, Integer> entry: map.entrySet()){

@@ -6,6 +6,6 @@ public class ContainerScaner {
     private static final char PACKAGE_SEP = '.';
     private static final char DIR_SEP = '.';
 
-    public static ArrayList<Class> scan
+    public static ArrayList<Class> scan;
 
 }

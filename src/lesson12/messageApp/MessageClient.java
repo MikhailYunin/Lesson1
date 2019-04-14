@@ -34,6 +34,9 @@ public class MessageClient {
         }
     }
 
+
+
+
     private void buildAndSend(String name, String messageText) throws IOException {
         Message message = new Message(name, messageText);
         Socket socket = null;
