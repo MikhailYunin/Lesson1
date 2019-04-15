@@ -2,6 +2,7 @@ package fitness;
 
 import lesson11.excetpions.CheckedException;
 import lesson11.excetpions.UncheckedException;
+import lesson13.annotation.MethodInfo;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -17,6 +18,18 @@ public class FitnessRegisrator {
     ArrayList<Human> inGroup = new ArrayList<>();
 
     public void add(Human human, FitnessServiceEnumiration type) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+
+
+        AccessMode methodInfo = getClass().getDeclaredAnnotation(AccessMode.class);
+        System.out.println(methodInfo);
+        if (methodInfo != null){
+            System.out.println(methodInfo.group());
+            System.out.println(methodInfo.gym());
+            System.out.println(methodInfo.pool());
+        }
+
+
+
 
         if (FitnessServiceEnumiration.GYM.equals(type)) {
             int count=0;
