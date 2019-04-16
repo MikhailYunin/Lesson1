@@ -44,6 +44,7 @@ public class DayClient extends Client{
 
     public DayClient(String name, String surname, int bYear, String regDate, int endOfReg) {
         super(name, surname, bYear, regDate);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         LocalDateTime date2 = (LocalDateTime) formatter.parse(regDate);
         this.endOfReg = date2.plusMonths(endOfReg).format(formatter); // TODO
         setTypeClient("DayClient");

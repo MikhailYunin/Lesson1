@@ -2,7 +2,7 @@ package fitness;
 
 import java.util.Date;
 
-@AccessMode(group = "0")
+@AccessMode(gym = "22", group = "-1", pool = "22")
 public class Client extends Human {
 
     private boolean isVisited = false;

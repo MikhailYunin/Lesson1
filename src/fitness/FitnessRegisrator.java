@@ -1,15 +1,13 @@
 package fitness;
 
 import lesson11.excetpions.CheckedException;
-import lesson11.excetpions.UncheckedException;
-import lesson13.annotation.MethodInfo;
-
 import java.io.IOException;
-import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.TreeSet;
 
 public class FitnessRegisrator {
@@ -19,65 +17,70 @@ public class FitnessRegisrator {
 
     public void add(Human human, FitnessServiceEnumiration type) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 
-
-        AccessMode methodInfo = getClass().getDeclaredAnnotation(AccessMode.class);
-        System.out.println(methodInfo);
-        if (methodInfo != null){
-            System.out.println(methodInfo.group());
-            System.out.println(methodInfo.gym());
-            System.out.println(methodInfo.pool());
-        }
-
-
-
-
+        AccessMode methodInfo = human.getClass().getDeclaredAnnotation(AccessMode.class); // получаем доступ к аннотациям класса
         if (FitnessServiceEnumiration.GYM.equals(type)) {
-            int count=0;
-            for (Human e : inGym){
-                count +=1;
+            int count = 0;
+            for (Human e : inGym) {
+                count += 1; // считаем текущее количество людей на занятии
             }
             try {
-                checkExceptionQueue(count);
+                checkExceptionAccess(methodInfo.gym()); // проверка на доступ по времени, через аннотацию
+                checkExceptionQueue(count); // проверка на количество человек на занятии
                 inGym.add(human);
-                FitnessLogger.writeToFile(human,"GYM");
+                FitnessLogger.writeToFile(human, "GYM"); //логируем
             } catch (CheckedException e) {
                 System.out.println("CheckedException " + e.getMessage());
+                try {
+                    FitnessLogger.writeNoAccess(human, type);  // логируем отказ в доступе
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
 
-
         if (FitnessServiceEnumiration.POOL.equals(type)) {
 
-            int count=0;
-            for (Human e : inPool){
-                count +=1;
+            int count = 0;
+            for (Human e : inPool) {
+                count += 1;
             }
             try {
-
+                checkExceptionAccess(methodInfo.pool());
                 checkExceptionQueue(count);
                 inPool.add(human);
-                FitnessLogger.writeToFile(human,"Pool");
+                FitnessLogger.writeToFile(human, "Pool");
             } catch (CheckedException e) {
                 System.out.println("CheckedException " + e.getMessage());
+                try {
+                    FitnessLogger.writeNoAccess(human, type);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
         if (FitnessServiceEnumiration.GROUP.equals(type)) {
-            int count=0;
-            for (Human e : inGroup){
-                count +=1;
+            int count = 0;
+            for (Human e : inGroup) {
+                count += 1;
             }
             try {
+                checkExceptionAccess(methodInfo.group());
                 checkExceptionQueue(count);
                 inGroup.add(human);
-                FitnessLogger.writeToFile(human,"Group");
+                FitnessLogger.writeToFile(human, "Group");
             } catch (CheckedException e) {
                 System.out.println("CheckedException " + e.getMessage());
+                try {
+                    FitnessLogger.writeNoAccess(human, type);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -85,75 +88,88 @@ public class FitnessRegisrator {
 
     }
 
-    public void toPrint(){
+    public void toPrint() {
+
+        System.out.println( "Люди, которые сейчас на занятиях: ");
         Comparator<Human> clientComparator = new SurnameComparator().thenComparing(new NameComparator());
 
         TreeSet<Human> gymTreeSet = new TreeSet<>(clientComparator);
-        for (Human e: inGym){
+        for (Human e : inGym) {
             gymTreeSet.add(e);
         }
         TreeSet<Human> poolTreeSet = new TreeSet<>(clientComparator);
-        for (Human e: inPool){
+        for (Human e : inPool) {
             poolTreeSet.add(e);
         }
         TreeSet<Human> groupTreeSet = new TreeSet<>(clientComparator);
-        for (Human e: inGroup){
+        for (Human e : inGroup) {
             groupTreeSet.add(e);
         }
 
 
-        for (Human human: gymTreeSet){
-            System.out.println("<"+human.getSurname()+ "> <" + human.getName()+"> <"+human.getTypeClient()+"> <в тренажерном зале>");
+        for (Human human : gymTreeSet) {
+            System.out.println("<" + human.getSurname() + "> <" + human.getName() + "> <" + human.getTypeClient() + "> <в тренажерном зале>");
         }
-        for (Human human: poolTreeSet){
-            System.out.println("<"+human.getSurname()+ "> <" + human.getName()+"> <"+human.getTypeClient()+"> <в бассейне>");
+        for (Human human : poolTreeSet) {
+            System.out.println("<" + human.getSurname() + "> <" + human.getName() + "> <" + human.getTypeClient() + "> <в бассейне>");
         }
-        for (Human human: groupTreeSet){
-            System.out.println("<"+human.getSurname()+ "> <" + human.getName()+"> <"+human.getTypeClient()+"> <на групповых занятиях>");
+        for (Human human : groupTreeSet) {
+            System.out.println("<" + human.getSurname() + "> <" + human.getName() + "> <" + human.getTypeClient() + "> <на групповых занятиях>");
         }
 
     }
 
 
+    public void remove(Human human) {
 
-    public void remove(Human human){
-        for (Human e : inGym){
-            if (e.equals(human)){
-                inGym.remove(e);
+        Iterator<Human> humanIterator = inGym.iterator();//создаем итератор
+        while(humanIterator.hasNext()) {//до тех пор, пока в списке есть элементы
+            Human nextHuman = humanIterator.next();//получаем следующий элемент
+            if (nextHuman.equals(human)) {
+                humanIterator.remove();//удаляем клиента из занятия
             }
         }
-        for (Human e : inPool){
-            if (e.equals(human)){
-                inPool.remove(e);
+
+        Iterator<Human> humanIterator2 = inPool.iterator();
+        while(humanIterator2.hasNext()) {
+            Human nextHuman = humanIterator2.next();
+            if (nextHuman.equals(human)) {
+                humanIterator2.remove();
             }
         }
-        for (Human e : inGroup){
-            if (e.equals(human)){
-                inGroup.remove(e);
+
+        Iterator<Human> humanIterator3 = inGroup.iterator();
+        while(humanIterator3.hasNext()) {
+            Human nextHuman = humanIterator3.next();
+            if (nextHuman.equals(human)) {
+                humanIterator3.remove();
             }
         }
+
+
     }
-
-
-
 
 
     public static void checkExceptionQueue(int i) throws CheckedException {
-        if (i > 20){
+        if (i > 20) {
             throw new CheckedException("QueueException");
         }
     }
 
+    public static void checkExceptionAccess(String finishTime) throws CheckedException {
+        LocalTime time = LocalTime.now();
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("k");
+        int finishTime2 = Integer.parseInt(finishTime); // время, окончания доступа к занятию
+        int curTime = Integer.parseInt(time.format(formatter2)); // текущий час
 
-    public static void checkExceptionAccess(FitnessServiceEnumiration typeClient, FitnessServiceEnumiration typeAcess, Human human) throws CheckedException {
-        if (typeClient.equals(typeClient)){
-            //human.
+        if (finishTime2 < 8 | finishTime2 <= curTime) {
             throw new CheckedException("NoAccessException");
         }
     }
+
 }
 
-class SurnameComparator implements Comparator<Human>{
+class SurnameComparator implements Comparator<Human> {
 
     @Override
     public int compare(Human o1, Human o2) {
@@ -161,7 +177,7 @@ class SurnameComparator implements Comparator<Human>{
     }
 }
 
-class NameComparator implements Comparator<Human>{
+class NameComparator implements Comparator<Human> {
 
     @Override
     public int compare(Human o1, Human o2) {

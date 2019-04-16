@@ -18,7 +18,7 @@ public class Test {
         Client client7 = new Client("Vladimir","Putin",1995, "11.04.2019");
         DayClient client8 = new DayClient("Dima","Medvedev",1995);
         DayClient client9 = new DayClient("Valka","Stakan",1995);
-        DayClient client10 = new DayClient("Vladimir","PPeskov",1950, "14.01.2019", 4);
+        DayClient client10 = new DayClient("Vladimir","PPeskov",1950);
         DayClient client11 = new DayClient("Car","Putin",1995);
         DayClient client12 = new DayClient("Vor","Putin",1995);
         DayClient client13 = new DayClient("Vladimir","смит",1995);
@@ -47,6 +47,8 @@ public class Test {
 
 
         regisrator.toPrint();
+
+        regisrator.remove(client17);
 
 
 
