@@ -1,10 +1,8 @@
 package multiTreading.messageApp;
 
-import sun.awt.windows.ThemeReader;
 
 import java.io.IOException;
 import java.net.Socket;
-import java.nio.channels.ClosedByInterruptException;
 import java.util.Scanner;
 
 public class MessageClient {

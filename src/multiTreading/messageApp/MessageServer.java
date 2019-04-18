@@ -35,7 +35,6 @@ public class MessageServer {
                 connections.add(connection);
 
                 new Thread(new Reader(connection)).start();
-
             }
 
         } catch (IOException e) {
@@ -55,13 +54,10 @@ public class MessageServer {
                         connection.sendMessage(message);
                     }
                     messages.remove(message);
-
                 }
             } catch (InterruptedException | IOException e) {
                 e.printStackTrace();
             }
-
-
         }
     }
 
