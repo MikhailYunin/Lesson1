@@ -60,9 +60,6 @@ public class Top100 {
         myThread4.join();
 
 
-
-
-
         // Вывести топ 10 самых частых слов и фраз.
         List<Map.Entry<String, Integer>> entries = new ArrayList<>(map.entrySet());
         entries.sort(new Comparator<Map.Entry<String, Integer>>() {
@@ -71,10 +68,7 @@ public class Top100 {
                 return  Integer.compare(o2.getValue(), o1.getValue());
             }
         });
-
         System.out.println(entries.subList(0,100).toString());
-
-
     }
 }
 
@@ -82,16 +76,12 @@ public class Top100 {
 class MyThread extends Thread {
 
     List<String> words;
-    List<Map.Entry<String, Integer>> top;
+
     HashMap<String, Integer> wordMap;
 
     public MyThread(List<String> words, HashMap<String, Integer> wordMap ) {
         this.words = words;
         this.wordMap = wordMap;
-    }
-
-    public List<Map.Entry<String, Integer>> getTop() {
-        return top;
     }
 
     @Override
@@ -110,16 +100,5 @@ class MyThread extends Thread {
                 }
             }
         }
-
-
-
-
-
-
     }
-
-
-
-
-
 }

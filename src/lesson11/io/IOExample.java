@@ -10,7 +10,7 @@ public class IOExample {
     // IO | NIO
 
     public static void main(String[] args) {
-//        File file = new File("file.txt");
+//        File file.txt = new File("file.txt.txt");
         // IO API
 //        работают с байтами
 //        InputStream
@@ -21,24 +21,24 @@ public class IOExample {
 //        Writer
 
         /*try {
-            writeToFile("src/file.txt", true, Charset.forName("UTF-8"));
+            writeToFile("src/file.txt.txt", true, Charset.forName("UTF-8"));
         } catch (IOException e) {
             e.printStackTrace();
         }
         try {
-            readByte(new File("src/file.txt"));
+            readByte(new File("src/file.txt.txt"));
         } catch (IOException e) {
             e.printStackTrace();
         }
 */
 //        try {
-//            readByteArray(new File("src/file.txt"), Charset.forName("UTF-8"));
+//            readByteArray(new File("src/file.txt.txt"), Charset.forName("UTF-8"));
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
 
         File[] files = {
-                new File("src/file.txt"),
+                new File("src/file.txt.txt"),
                 new File("src/file1.txt")
         };
 

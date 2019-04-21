@@ -2,7 +2,7 @@ package lesson6.staticFinal;
 
 public class Main {
     public static void main(String[] args) {
-        String fileName = "file.json";
+        String fileName = "file.txt.json";
 
 
         // вызов статического метода

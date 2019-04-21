@@ -12,6 +12,8 @@ public class MapHomework {
         File file = new File(loader.getResource("file.txt").getFile());
         List<String> lines = Files.readAllLines(file.toPath());
 
+
+
         List<String> words = new ArrayList<>();
 
         for (String line: lines){
@@ -35,28 +37,23 @@ public class MapHomework {
                 wordMap.put(word, 1);
             }
         }
-        System.out.println(wordMap);
+        System.out.println(wordMap.toString());
 
 //        Собрать все слова в группы по количеству букв:
 //        например, в одну группу попадут слова:
 //        [the, war, jar, get, met...], в другую [on, up, no, of...].
 
-        HashMap<Integer, HashSet<String>> groupMap = new HashMap<>();
-        for (String word: words) {
-            int len = word.length();
-            if (!groupMap.containsKey(len)){
-                groupMap.put(len, new HashSet<>());
-            }
-            groupMap.get(len).add(word);
-        }
+
 
         // Вывести топ 10 самых частых слов и фраз.
         List<Map.Entry<String, Integer>> entries = new ArrayList<>(wordMap.entrySet());
-        entries.sort(new Comparator<Map.Entry<String, Integer>>() {
+        entries.sort(new Comparator<Map.Entry<String, Integer>>()
+        {
             @Override
             public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
                 return  Integer.compare(o1.getValue(), o2.getValue());
             }
         });
+        System.out.println(entries.toString());
     }
 }

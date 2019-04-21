@@ -13,7 +13,7 @@ public class FitnessLogger {
 
     public static void writeToFile(Human human, String type) throws IOException {
 
-        try (FileOutputStream outputStream = new FileOutputStream("src/fitness/file.txt", true))
+        try (FileOutputStream outputStream = new FileOutputStream("src/fitness/file.txt.txt", true))
         {
             LocalDate date = LocalDate.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
@@ -38,7 +38,7 @@ public class FitnessLogger {
 
     public static void writeNoAccess(Human human, FitnessServiceEnumiration type) throws IOException {
 
-        try (FileOutputStream outputStream = new FileOutputStream("src/fitness/file.txt", true))
+        try (FileOutputStream outputStream = new FileOutputStream("src/fitness/file.txt.txt", true))
         {
             LocalDate date = LocalDate.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");

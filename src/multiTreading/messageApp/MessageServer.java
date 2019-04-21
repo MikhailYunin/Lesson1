@@ -1,8 +1,9 @@
 package multiTreading.messageApp;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.charset.Charset;
 import java.util.Set;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -26,10 +27,11 @@ public class MessageServer {
     public void start() {
         new Thread(new Writer()).start();
 
-        try (ServerSocket serverSocket = new ServerSocket(port)){
+        try (ServerSocket serverSocket = new ServerSocket(port)) {
             System.out.println("server started...");
 
             while (true) {
+
                 Socket socket = serverSocket.accept();
                 Connection connection = new Connection(socket);
                 connections.add(connection);
@@ -41,6 +43,7 @@ public class MessageServer {
             e.printStackTrace();
         }
     }
+
 
     private class Writer implements Runnable {
 
