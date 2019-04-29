@@ -13,3 +13,7 @@ decontainer/containerScaner
 Concur/ ConcurExample
 
 пицца
+
+
+26.04
+организовать список стратегий в энуме
