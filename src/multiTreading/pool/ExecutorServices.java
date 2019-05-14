@@ -41,7 +41,7 @@ public class ExecutorServices {
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
-        scheduledService.shutdown();
+        //scheduledService.shutdown();
 
         // выполнение каждые 5 секунд
         ScheduledExecutorService runEveryFiveSecond = Executors.newSingleThreadScheduledExecutor();
@@ -54,7 +54,7 @@ public class ExecutorServices {
         everySecond
                 .scheduleWithFixedDelay(new RunnableTask("everySecond"), 0, 1, TimeUnit.SECONDS);
 
-
+everySecond.shutdown();
 
 
 

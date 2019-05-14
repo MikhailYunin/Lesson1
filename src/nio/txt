@@ -1,0 +1,64 @@
+буфер имеет ограниченный размер и не меняется после задания
+
+limit устанавливает ограничение значения для считывания
+методы объекта буфер:
+flip() - для читывания данных после записи
+rewind() - для повторного считывания из буфера
+clear() - очистка буфера
+
+
+VM options -ea
+
+
+SQL
+
+1. DDL определение данных
+Создавать БД, удалять БД, создавать таблицы, изменять, удалять
+
+2. DML
+добавлять данные в таблицы
+обновляьт данные в таблице
+удалять данные в таблицы
+получать данные из таблиц
+
+3. DCL
+
+
+JDBC driver psg // скачать дрв
+
+
+создание таблицы
+CREATE TABLE IF NOT EXISTS Book(
+    `id` SERIAL PRIMARY KEY,
+    `tittle` TEXT NOT NULL,
+    `pageCount` INTEGER NOT NULL
+)
+
+INSERT INTO Book (title, pageCount) VALUES (?, ?);
+
+
+SELECT * FROM Book;
+
+SELECT title, pageCount FROM Book;
+
+SELECT * FROM Book WHERE id=2;
+SELECT * FROM Book pageCount BETWEEN 34 AND 90;
+SELECT * FROM Book pageCount IN (34, 90);
+SELECT * FROM Book pageCount NOT IN (34, 90);
+
+для формирования условий:
+
+= < > <= >= !=/<>
+BETWEEN
+IN
+LIKE
+
+SELECT * FROM Book WHERE условие1 AND условие2 и тд;
+SELECT * FROM Book WHERE условие1 OR условие2 и тд;
+
+
+удаление
+DELETE FROM Book WHERE условие;
+
+обновление данных
+UPDATE Book SET title = 'новое значение' WHERE id=1;
